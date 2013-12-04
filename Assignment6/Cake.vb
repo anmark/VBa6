@@ -1,11 +1,10 @@
 ﻿Public Class Cake
     Inherits BakeryItem
+    Private m_numOfPieces As Double
 
-    Public Sub New(name As String, price As String)
+    Public Sub New(name As String, price As Double)
         MyBase.New(name, price)
     End Sub
-
-    Private m_numOfPieces As Integer
 
     Public Property Pieces() As Integer
         Get

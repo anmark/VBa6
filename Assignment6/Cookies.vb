@@ -1,11 +1,11 @@
 ﻿Public Class Cookies
     Inherits BakeryItem
+    Private m_weight As Double
 
-    Public Sub New(name As String, price As String)
+    Public Sub New(name As String, price As Double)
         MyBase.New(name, price)
     End Sub
 
-    Private m_weight As Double
     Public Property Weight() As Double
         Get
             Return m_weight

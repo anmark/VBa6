@@ -26,9 +26,10 @@ Partial Class MainForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmbProduct = New System.Windows.Forms.ComboBox()
-        Me.lblCost = New System.Windows.Forms.Label()
         Me.btnOK = New System.Windows.Forms.Button()
-        Me.lblPieces = New System.Windows.Forms.Label()
+        Me.txtNumberOfPieces = New System.Windows.Forms.TextBox()
+        Me.txtCostPerPiece = New System.Windows.Forms.TextBox()
+        Me.lblReciept = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Item
@@ -66,18 +67,6 @@ Partial Class MainForm
         Me.cmbProduct.Size = New System.Drawing.Size(121, 21)
         Me.cmbProduct.TabIndex = 3
         '
-        'lblCost
-        '
-        Me.lblCost.AutoSize = True
-        Me.lblCost.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblCost.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblCost.Location = New System.Drawing.Point(218, 83)
-        Me.lblCost.MinimumSize = New System.Drawing.Size(60, 20)
-        Me.lblCost.Name = "lblCost"
-        Me.lblCost.Size = New System.Drawing.Size(60, 20)
-        Me.lblCost.TabIndex = 5
-        '
         'btnOK
         '
         Me.btnOK.Location = New System.Drawing.Point(49, 116)
@@ -87,26 +76,41 @@ Partial Class MainForm
         Me.btnOK.Text = "OK"
         Me.btnOK.UseVisualStyleBackColor = True
         '
-        'lblPieces
+        'txtNumberOfPieces
         '
-        Me.lblPieces.AutoSize = True
-        Me.lblPieces.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.lblPieces.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblPieces.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblPieces.Location = New System.Drawing.Point(218, 52)
-        Me.lblPieces.MinimumSize = New System.Drawing.Size(60, 20)
-        Me.lblPieces.Name = "lblPieces"
-        Me.lblPieces.Size = New System.Drawing.Size(60, 20)
-        Me.lblPieces.TabIndex = 7
+        Me.txtNumberOfPieces.Location = New System.Drawing.Point(204, 52)
+        Me.txtNumberOfPieces.Name = "txtNumberOfPieces"
+        Me.txtNumberOfPieces.Size = New System.Drawing.Size(74, 20)
+        Me.txtNumberOfPieces.TabIndex = 9
+        '
+        'txtCostPerPiece
+        '
+        Me.txtCostPerPiece.Location = New System.Drawing.Point(204, 83)
+        Me.txtCostPerPiece.Name = "txtCostPerPiece"
+        Me.txtCostPerPiece.Size = New System.Drawing.Size(74, 20)
+        Me.txtCostPerPiece.TabIndex = 10
+        '
+        'lblReciept
+        '
+        Me.lblReciept.AutoSize = True
+        Me.lblReciept.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lblReciept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblReciept.Location = New System.Drawing.Point(13, 148)
+        Me.lblReciept.MinimumSize = New System.Drawing.Size(260, 180)
+        Me.lblReciept.Name = "lblReciept"
+        Me.lblReciept.Size = New System.Drawing.Size(260, 180)
+        Me.lblReciept.TabIndex = 11
+        Me.lblReciept.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 325)
-        Me.Controls.Add(Me.lblPieces)
+        Me.ClientSize = New System.Drawing.Size(285, 337)
+        Me.Controls.Add(Me.lblReciept)
+        Me.Controls.Add(Me.txtCostPerPiece)
+        Me.Controls.Add(Me.txtNumberOfPieces)
         Me.Controls.Add(Me.btnOK)
-        Me.Controls.Add(Me.lblCost)
         Me.Controls.Add(Me.cmbProduct)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -121,8 +125,9 @@ Partial Class MainForm
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents cmbProduct As System.Windows.Forms.ComboBox
-    Friend WithEvents lblCost As System.Windows.Forms.Label
     Friend WithEvents btnOK As System.Windows.Forms.Button
-    Friend WithEvents lblPieces As System.Windows.Forms.Label
+    Friend WithEvents txtNumberOfPieces As System.Windows.Forms.TextBox
+    Friend WithEvents txtCostPerPiece As System.Windows.Forms.TextBox
+    Friend WithEvents lblReciept As System.Windows.Forms.Label
 
 End Class

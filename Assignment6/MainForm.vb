@@ -1,5 +1,11 @@
-﻿Public Class MainForm
-    Dim m_item As Cake = New Cake("cake", 1)
+﻿Option Explicit On
+Option Strict On
+
+'MainForm.vb
+'Created By: Anmar Khazal 2013-12-04
+
+Public Class MainForm
+    Dim m_item As BakeryItem = New Cake("cake", 1)
 
     Public Sub New()
 
@@ -35,15 +41,49 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function ReadInput() As Boolean
-        If True Then
+    Private Function ReadInput(ByRef number As Double, ByRef cost As Double) As Boolean
+       
+        If GetPositiveDouble(txtNumberOfPieces.Text, number) And GetPositiveDouble(txtCostPerPiece.Text, cost) Then
             Return True
         Else
             Return False
         End If
     End Function
 
+    ''' <summary>
+    ''' GetPositiveDouble
+    ''' Converts a string represented Double value to an Double type, and validates
+    ''' the converted value to be >= 0
+    ''' </summary>
+    ''' <param name="stringToConvert">String representing the Double value.</param>
+    ''' <param name="doubleOutValue">The converted Double value. If the conversion is successful
+    ''' this variable will have a valid value, otherwise it is initiated to zero.</param>
+    ''' <returns>True if the conversion is successful and the converted value >=0, False otherwise.</returns>
+    ''' <remarks></remarks>
+    Public Shared Function GetPositiveDouble(ByVal stringToConvert As String, ByRef doubleOutValue As Double) As Boolean
+        Dim goodNumber As Boolean = Double.TryParse(stringToConvert, doubleOutValue)
+        If (goodNumber) Then
+            goodNumber = doubleOutValue >= 0
+        End If
+        Return goodNumber
+    End Function
+
+    Public Sub CreateItem(ByVal choice As Integer)
+        Dim bakery_item As BakeryItem
+        Select Case (choice)
+            Case 1
+                bakery_item = New Cake("cake", 1)
+            Case 2
+                bakery_item = New Cookies("cookie", 1)
+        End Select
+    End Sub
+
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        Dim numberOfPieces As Double = 0.0
+        Dim costPerPiece As Double = 0.0
+        If ReadInput(numberOfPieces, costPerPiece) Then
+            PrintReciept(costPerPiece, numberOfPieces)
+        End If
 
     End Sub
 
@@ -53,4 +93,11 @@
         End If
 
     End Sub
+
+    Private Sub PrintReciept(ByVal numberOfPieces As Double, ByVal costPerPiece As Double)
+        Dim strOut As String = String.Format("The cake will cost your {0} kr", numberOfPieces * costPerPiece)
+        lblReciept.Text = strOut
+    End Sub
+
+
 End Class

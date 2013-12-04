@@ -1,8 +1,8 @@
-﻿Public MustInherit Class BakeryItem
+﻿Public Class BakeryItem
     Private m_name As String
     Private m_price As Double
 
-    Public Sub New(name As String, price As String)
+    Public Sub New(name As String, price As Double)
         m_name = name
         m_price = price
     End Sub
