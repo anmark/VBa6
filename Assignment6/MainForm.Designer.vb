@@ -23,7 +23,7 @@ Partial Class MainForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Item = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblNumberOrWeight = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmbProduct = New System.Windows.Forms.ComboBox()
         Me.btnOK = New System.Windows.Forms.Button()
@@ -41,14 +41,14 @@ Partial Class MainForm
         Me.Item.TabIndex = 0
         Me.Item.Text = "Item"
         '
-        'Label2
+        'lblNumberOrWeight
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 59)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(90, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Number of pieces"
+        Me.lblNumberOrWeight.AutoSize = True
+        Me.lblNumberOrWeight.Location = New System.Drawing.Point(12, 59)
+        Me.lblNumberOrWeight.Name = "lblNumberOrWeight"
+        Me.lblNumberOrWeight.Size = New System.Drawing.Size(90, 13)
+        Me.lblNumberOrWeight.TabIndex = 1
+        Me.lblNumberOrWeight.Text = "Number of pieces"
         '
         'Label3
         '
@@ -113,16 +113,16 @@ Partial Class MainForm
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.cmbProduct)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblNumberOrWeight)
         Me.Controls.Add(Me.Item)
         Me.Name = "MainForm"
-        Me.Text = "Form1"
+        Me.Text = "Apu's sweets"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents Item As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblNumberOrWeight As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents cmbProduct As System.Windows.Forms.ComboBox
     Friend WithEvents btnOK As System.Windows.Forms.Button

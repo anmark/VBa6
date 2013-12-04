@@ -2,8 +2,9 @@
     Inherits BakeryItem
     Private m_weight As Double
 
-    Public Sub New(name As String, price As Double)
+    Public Sub New(name As String, price As Double, weight As Double)
         MyBase.New(name, price)
+        m_weight = weight
     End Sub
 
     Public Property Weight() As Double
@@ -17,7 +18,7 @@
     End Property
 
     Public Overrides Function ToString() As String
-        Dim strOut As String = String.Format("{0}   {1}", MyBase.ToString(), Weight())
+        Dim strOut As String = String.Format("{0}{2}Weight: {1} grams", MyBase.ToString(), Weight(), Environment.NewLine)
         Return strOut
     End Function
 

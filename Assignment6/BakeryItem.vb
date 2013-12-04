@@ -7,8 +7,6 @@
         m_price = price
     End Sub
 
-
-
     Public Property Name() As String
         Get
             Return m_name
@@ -50,7 +48,7 @@
     ''' <returns>The product string without "_" char</returns>
     ''' <remarks></remarks>
     Public Function GetProductString(item As ProductType) As String
-        Dim strOut As String = item.ToString()
+        Dim strOut As String = item.ToString().Replace("_", " ").Trim()
         Return strOut
     End Function
 
@@ -76,7 +74,7 @@
 
 
     Public Overrides Function ToString() As String
-        Dim strOut As String = String.Format("{0}   {1}", Name, Price)
+        Dim strOut As String = String.Format("Name: {0} {2}Price: {1} kr", Name, Price, Environment.NewLine)
         Return strOut
     End Function
 

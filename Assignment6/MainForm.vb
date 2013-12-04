@@ -5,7 +5,7 @@ Option Strict On
 'Created By: Anmar Khazal 2013-12-04
 
 Public Class MainForm
-    Dim m_item As BakeryItem = New Cake("cake", 1)
+    Dim m_item As BakeryItem = New BakeryItem("test", 1)
 
     Public Sub New()
 
@@ -68,36 +68,52 @@ Public Class MainForm
         Return goodNumber
     End Function
 
-    Public Sub CreateItem(ByVal choice As Integer)
+    Public Sub CreateItem(ByVal choice As Integer, ByVal numberOfPieces As Double, ByVal costPerPiece As Double, ByVal name As String)
         Dim bakery_item As BakeryItem
         Select Case (choice)
             Case 1
-                bakery_item = New Cake("cake", 1)
+                bakery_item = New Cake(name, numberOfPieces * costPerPiece, numberOfPieces)
+                PrintReciept(bakery_item)
             Case 2
-                bakery_item = New Cookies("cookie", 1)
+                bakery_item = New Cookies(name, numberOfPieces * costPerPiece, numberOfPieces)
+                PrintReciept(bakery_item)
         End Select
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        DetermineProductType()
+    End Sub
+
+    Public Sub DetermineProductType()
         Dim numberOfPieces As Double = 0.0
         Dim costPerPiece As Double = 0.0
-        If ReadInput(numberOfPieces, costPerPiece) Then
-            PrintReciept(costPerPiece, numberOfPieces)
+
+
+        If ReadInput(numberOfPieces, costPerPiece) And cmbProduct.SelectedIndex >= 0 Then
+            Dim productType As ProductType = DirectCast(cmbProduct.SelectedIndex, ProductType)
+
+            If (m_item.IsItemCake(productType)) Then
+                CreateItem(1, numberOfPieces, costPerPiece, m_item.GetProductString(productType))
+            Else
+                CreateItem(2, numberOfPieces, costPerPiece, m_item.GetProductString(productType))
+            End If
         End If
 
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProduct.SelectedIndexChanged
+    Private Sub PrintReciept(ByVal item As BakeryItem)
+        ''   If (item.IsItemCake(
+        lblReciept.Text = item.ToString()
+    End Sub
+
+
+    Private Sub cmbProduct_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProduct.SelectedIndexChanged
         If cmbProduct.SelectedIndex >= 0 Then
-
+            If DirectCast(cmbProduct.SelectedIndex, ProductType).Equals(ProductType.Cookies) Then
+                lblNumberOrWeight.Text = "Weight of cookies (grams)"
+            Else
+                lblNumberOrWeight.Text = "Number of pieces"
+            End If
         End If
-
     End Sub
-
-    Private Sub PrintReciept(ByVal numberOfPieces As Double, ByVal costPerPiece As Double)
-        Dim strOut As String = String.Format("The cake will cost your {0} kr", numberOfPieces * costPerPiece)
-        lblReciept.Text = strOut
-    End Sub
-
-
 End Class
