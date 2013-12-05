@@ -20,29 +20,23 @@ Public Class MainForm
     'Add countries to the combo box and do other initilizations. 
     Private Sub InitializeGUI()
         cmbProduct.DataSource = m_item.GetProductStrings()
-        UpdateGUI()
     End Sub
 
-    'Clear the ListBox, call the method GetContactsInfo of the m_contacts objects
-    'and using the ListBox's AddRange method, add the array to the ListBox
+  
     Private Sub UpdateGUI()
-        'Dim strContacts() As String = m_contacts.GetContactsInfo()
-        'lblcount.text = lstresults.items.count.tostring()
-        'lstresults.items.clear()
-        'If (strContacts IsNot Nothing) Then
-        '    lstresults.items.clear()
-        '    lstresults.items.addrange(strContacts)
-        '    lblcount.text = lstresults.items.count.tostring()
-        'End If
+        If DirectCast(cmbProduct.SelectedIndex, ProductType).Equals(ProductType.Cookies) Then
+            lblNumberOrWeight.Text = "Weight of cookies (grams)"
+        Else
+            lblNumberOrWeight.Text = "Number of pieces"
+        End If
     End Sub
 
     ''' <summary>
-    ''' Validates name and address inputs
+    ''' Validates input
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>True if input is valid, False otherwise</returns>
     ''' <remarks></remarks>
     Private Function ReadInput(ByRef number As Double, ByRef cost As Double) As Boolean
-       
         If GetPositiveDouble(txtNumberOfPieces.Text, number) And GetPositiveDouble(txtCostPerPiece.Text, cost) Then
             Return True
         Else
@@ -68,6 +62,14 @@ Public Class MainForm
         Return goodNumber
     End Function
 
+    ''' <summary>
+    ''' Dynamical binding. Creates new cake or cookie depending on user input
+    ''' </summary>
+    ''' <param name="choice"></param>
+    ''' <param name="numberOfPieces"></param>
+    ''' <param name="costPerPiece"></param>
+    ''' <param name="name"></param>
+    ''' <remarks></remarks>
     Public Sub CreateItem(ByVal choice As Integer, ByVal numberOfPieces As Double, ByVal costPerPiece As Double, ByVal name As String)
         Dim bakery_item As BakeryItem
         Select Case (choice)
@@ -80,14 +82,13 @@ Public Class MainForm
         End Select
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        DetermineProductType()
-    End Sub
-
+    ''' <summary>
+    ''' Determines product type and calls CreateItem accordingly
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Sub DetermineProductType()
-        Dim numberOfPieces As Double = 0.0
-        Dim costPerPiece As Double = 0.0
-
+        Dim numberOfPieces As Double
+        Dim costPerPiece As Double
 
         If ReadInput(numberOfPieces, costPerPiece) And cmbProduct.SelectedIndex >= 0 Then
             Dim productType As ProductType = DirectCast(cmbProduct.SelectedIndex, ProductType)
@@ -101,19 +102,23 @@ Public Class MainForm
 
     End Sub
 
+    ''' <summary>
+    ''' Prints reciept
+    ''' </summary>
+    ''' <param name="item"></param>
+    ''' <remarks></remarks>
     Private Sub PrintReciept(ByVal item As BakeryItem)
         ''   If (item.IsItemCake(
         lblReciept.Text = item.ToString()
     End Sub
 
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+        DetermineProductType()
+    End Sub
 
     Private Sub cmbProduct_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProduct.SelectedIndexChanged
         If cmbProduct.SelectedIndex >= 0 Then
-            If DirectCast(cmbProduct.SelectedIndex, ProductType).Equals(ProductType.Cookies) Then
-                lblNumberOrWeight.Text = "Weight of cookies (grams)"
-            Else
-                lblNumberOrWeight.Text = "Number of pieces"
-            End If
+            UpdateGUI()
         End If
     End Sub
 End Class
