@@ -17,7 +17,7 @@
     End Property
 
     Public Overrides Function ToString() As String
-        Dim strOut As String = String.Format("{0}{2}Pieces: {1}", MyBase.ToString(), Pieces(), Environment.NewLine)
+        Dim strOut As String = String.Format("{0}{2}Number of pieces: {1}", MyBase.ToString(), Pieces(), Environment.NewLine)
         Return strOut
     End Function
 

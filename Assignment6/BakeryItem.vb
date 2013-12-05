@@ -64,7 +64,7 @@
         items = System.Enum.GetValues(GetType(ProductType))
 
         For Each item As ProductType In items
-            strOut.Add(item.ToString().Replace("_", " ").Trim())
+            strOut.Add(GetProductString(item))
         Next
 
         Dim productStrings As String() = strOut.ToArray()
